@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="mystyle.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div class="shadow-lg container"><br>
+  <button type="button" id="switchdark" class="btn btn-dark" onclick="darkMode()">Dark mode</button>
+  <button type="button" id ="picsumbtn" class="btn btn-light" onclick="picsum()">SFW images</button>
+  <img src="ghostface/76d02a321d878ba813e24fd7c3fac833.png" alt="" id="ghost">
+  <h1>Random pics!</h1>
+  <p>Wondrous gallery!</p><br>
+   <div class="row">
+        <div class="col-md-4" id="col1">
+            <img src='https://cdn.mos.cms.futurecdn.net/VzFmuWrjAj87r3sCbjCnjG.jpg' alt="..." class="img-thumbnail">
+            <img src='https://cdn.mos.cms.futurecdn.net/VzFmuWrjAj87r3sCbjCnjG.jpg' alt="..." class="img-thumbnail">
+            <img src= https://placehold.it/200x150 alt="..." class="img-thumbnail">
+       </div>
+        <div class="col-md-4" id="col2">
+            <img src= https://placehold.it/200x150 alt="..." class="img-thumbnail">
+            <img src= https://placehold.it/200x150 alt="..." class="img-thumbnail">
+            <img src= https://placehold.it/200x150 alt="..." class="img-thumbnail">
+       </div>
+        <div class="col-md-4" id="col3">
+            <img src= https://placehold.it/200x150 alt="..." class="img-thumbnail">
+            <img src= https://placehold.it/200x150 alt="..." class="img-thumbnail">
+            <img src= https://placehold.it/200x150 alt="..." class="img-thumbnail">
+       </div>
+    </div>
+    <button type="button" id="morebtn" onclick=buttonClick(); class="btn btn-primary btn-lg btn-block">Show more</button><br>
+</div>
+</body>
+<script>
+    
+    function randomNumber(){
+        var numero = Math.floor(Math.random()*600) +600;
+        return numero 
+    }
+    
+    function stupidpiece(){
+        var numeros = randomNumber();
+        var numeros2 = randomNumber();
+        var numeros3 = randomNumber();
+        var sitet = "https://picsum.photos/" + numeros + "/" + numeros2;
+        return sitet;
+    }
+    
+    function randomString() {
+        var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+        var stringlength = 5;
+        var text = '';
+        for (var i = 0; i < stringlength; i++) {
+            var rnum = Math.floor(Math.random() * chars.length);
+            text += chars.substring(rnum,rnum+1);
+        }
+        var source = 'https://i.imgur.com/' + text + '.jpg';
+        return source
+    }
+    
+    function imgurThing(){   
+        var image = new Image();
+        var thumbnails = document.getElementsByClassName('img-thumbnail');
+        $('.img-thumbnail').each(function(){
+            $(this).attr('src', randomString()).on('load', avoidBrokenImages);
+        });
+    }
+    
+    function avoidBrokenImages() {
+        $('.img-thumbnail').each(function(){
+            if ($(this).width() == 161){
+                $(this).attr('src', randomString());
+            }
+        });
+    }
+     
+    $(document).ready(function(){
+        imgurThing();
+        avoidBrokenImages();
+    });
+    
+    var div = document.getElementsByClassName("col-md-4");
+    for (i = 0; i < div.length; i++){
+        var img = document.createElement("img").innerHTML;
+        img.className = "img-thumbnail";
+        $(img).attr('src', randomString()).on('load', avoidBrokenImages);
+        div[i].appendChild(img);
+    }
+    
+    function buttonClick() {
+        var columns = document.getElementsByClassName('col-md-4');
+        function actualFunction() {
+            for (i = 0; i < columns.length; i++){
+                var imag = document.createElement("img");
+                imag.className = "img-thumbnail";
+                $(imag).attr('src', randomString()).on('load', avoidBrokenImages);
+                if ($('#switchlight').length){
+                    $(imag).attr('id', 'darkthumbs');
+                }
+                columns[i].appendChild(imag);
+            }
+        }
+        actualFunction();
+        actualFunction();
+        actualFunction();
+    }
+    
+    function buttonClickalt() {
+        var columns = document.getElementsByClassName('col-md-4');
+        function actualFunction() {
+            for (i = 0; i < columns.length; i++){
+                var imag = document.createElement("img");
+                imag.className = "img-thumbnail";
+                $(imag).attr('src', stupidpiece());
+                if ($('#switchlight').length){
+                    $(imag).attr('id', 'darkthumbs');
+                }
+                columns[i].appendChild(imag);
+            }
+        }
+        actualFunction();
+        actualFunction();
+        actualFunction();
+    }
+    
+    function darkMode() {
+        $('body').attr('id', 'dark');
+        $('.container').attr('class', 'shadow-lg bg-dark container');
+        $('p').attr('id', 'darktext');
+        $('.img-thumbnail').attr('id', 'darkthumbs');
+        $('#morebtn').attr('class', 'btn btn-secondary btn-lg btn-block');
+        $('#switchdark').text('Light mode');
+        $('#switchdark').attr('onclick', 'lightMode()');
+        $('#switchdark').attr('class', 'btn btn-light');
+        $('#picsumbtn').attr('class', 'btn btn-secondary');
+        $('#switchdark').attr('id', 'switchlight');
+    }
+    
+    function lightMode() {
+        $('body').attr('id', null);
+        $('.container').attr('class', 'shadow-lg container');
+        $('p').attr('id', null);
+        $('.img-thumbnail').attr('id', null);
+        $('#morebtn').attr('class', 'btn btn-primary btn-lg btn-block');
+        $('#switchlight').text('Dark mode');
+        $('#switchlight').attr('onclick', 'darkMode()');
+        $('#switchlight').attr('class', 'btn btn-dark');
+        $('#picsumbtn').attr('class', 'btn btn-light');
+        $('#switchlight').attr('id', 'switchdark');
+    }
+    
+    function picsum() {
+        $('#morebtn').attr('onclick', 'buttonClickalt()');
+        $('#picsumbtn').attr('onclick', 'backtoimgur()');
+        $('#picsumbtn').text('Imgur images');
+        var thumbnails = document.getElementsByClassName("img-thumbnail");
+        for(i = 0; i < thumbnails.length; i++){
+            thumbnails[i].src = stupidpiece();
+        }
+    }
+    
+    function backtoimgur() {
+        $('#morebtn').attr('onclick', 'buttonClick()');
+        $('#picsumbtn').attr('onclick', 'picsum()');
+        $('#picsumbtn').text('SFW images');
+        var thumbnails = document.getElementsByClassName("img-thumbnail");
+        for(i = 0; i < thumbnails.length; i++){
+            $(thumbnails[i]).attr('src', randomString()).on('load', avoidBrokenImages);
+        }
+    }
+    
+</script>
+</html>

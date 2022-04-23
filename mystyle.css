@@ -1,0 +1,71 @@
+.img-thumbnail {  
+    transition: 0.25s;
+    position:relative;
+    z-index: 1;
+    margin-bottom: 12px;
+    margin-right: 12px;
+}
+
+#darkthumbs {
+    background-color: black;
+}
+
+@media not all and (pointer: coarse) {
+    .img-thumbnail:hover {
+        transform: scale(1.4);
+        position:relative;
+        z-index:100;
+    }
+}
+
+.container h1 {
+    color:yellow;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-family: "Georgia", Times, serif;
+    text-align: center;
+}
+
+#switchdark, #switchlight {
+    width: 122.817px;
+    float: left;
+}
+
+#picsumbtn {
+    width: 122.817px;
+    height: 38px;
+    float: right;
+}
+
+#ghost {
+    display: block;
+    overflow: hidden;
+    margin-top: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70px;
+    height: auto;
+}
+
+p {
+    text-align: center;
+}
+
+#morebtn {
+    margin-top: 12px;
+}
+
+#switchdark:hover {
+    box-shadow: 2px 2px 150px black;
+}
+
+#switchlight:hover {
+    box-shadow: 2px 2px 150px white;
+}
+
+#darktext {
+    color: white;
+}
+
+#dark {
+    background-color: dimgrey !important;
+}
